@@ -1,0 +1,32 @@
+apiVersion: serving.knative.dev/v1
+kind: Service
+metadata:
+  name: {{cookiecutter.dashboard_name}}
+  annotations:
+    run.googleapis.com/ingress: all
+    run.googleapis.com/ingress-status: all
+spec:
+  template:
+    metadata:
+      annotations:
+        autoscaling.knative.dev/maxScale: '2'
+        run.googleapis.com/cloudsql-instances: {{cookiecutter.gcp_project_id}}:{{cookiecutter.gcp_region}}:{{cookiecutter.gcp_region}}:{{cookiecutter.database_instance_name}}
+        run.googleapis.com/vpc-access-connector: {{cookiecutter.vpc_connecter_name}}
+    spec:
+      containers:
+        - image: gcr.io/{{cookiecutter.gcp_project_id}}/{{cookiecutter.dashboard_name}}
+          env:
+            - name: DATABASE_HOST
+              value: "{{cookiecutter.database_host}}"
+            - name: DATABASE_USER
+              value: "{{cookiecutter.database_user}}"
+            - name: DATABASE_PASSWORD
+              value: "{{cookiecutter.database_password}}"
+            - name: DATABASE_PORT
+              value: "5432"
+            - name: DATABASE_NAME
+              value: "{{cookiecutter.database_name}}"
+          resources:
+            limits:
+              memory: 2Gi
+              cpu: '2'

@@ -1,0 +1,13 @@
+{
+    "dashboard_name": "dashboard_name",
+    "gcp_project_id": "<enter gcp project id>",
+    "gcp_region": "<enter gcp regin>",
+    "database_instance_name": "<gcp instance name>",
+    "vpc_connecter_name": "<enter gcp connector name>",
+
+    "redis_host": "<redis_host>",
+    "database_host": "<database_host>",
+    "database_name": "<database_name>",
+    "database_user": "postgres",
+    "database_password": "<pgpasswd>"
+}

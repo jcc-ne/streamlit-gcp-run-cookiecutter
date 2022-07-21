@@ -1,0 +1,6 @@
+pandas==1.4.1
+streamlit
+sqlalchemy
+psycopg2-binary
+plotly
+google-cloud-core==2.0.0
